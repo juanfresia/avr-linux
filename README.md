@@ -49,6 +49,20 @@ make source.elf
 Lastly, the default target `make all` will attempt to build all .S files
 individually.
 
+## Uploading
+
+To upload the code from a compiled `source.S`, first plug the board to an USB
+and then run:
+
+ ```bash
+sudo make upload-source
+```
+
+This will attempt to upload the _ihex_ binary to the device at `/dev/ttyACM0`,
+which should be fine if the board is the only device connected. Check the
+makefile if you need to change that, or if you need to change the programmer
+(`avrdude` `-c` flag).
+
 ## Contributing
 
 Any bugs, suggestions and improvements are always welcome.
