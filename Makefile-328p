@@ -1,0 +1,33 @@
+PROG := $(wildcard *.S)
+HEX := $(patsubst %.S,%.hex,$(PROG))
+OBJ := $(patsubst %.S,%.o,$(PROG))
+
+all:
+
+%.out: %.S
+	avr-gcc $< -mmcu=atmega328p -Os -g -o $@ -nostartfiles
+	
+%.hex: %.out
+	avr-objcopy -O ihex $< $@ 
+	
+%.elf: %.out
+	avr-objcopy -O elf32-avr -g $< $@ 
+	
+upload-%: %.hex
+	avrdude -c arduino -p m328p -P /dev/ttyACM0 -b 115200 -U flash:w:$<
+
+inspect-%: %.out
+	avr-objdump -D $<
+
+sim-gdb-%: %.hex
+	simavr -m atmega328p -f 16m $< --gdb
+
+gdb-%: %.out
+	avr-gdb -q -s $< -e $< -n -ex 'target remote 127.0.0.1:1234'
+
+clean:
+	rm -rf *.o *.hex *.out
+.PHONY: clean
+ 
+.DEFAULT: all
+.PHONY: upload
