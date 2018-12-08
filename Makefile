@@ -4,9 +4,6 @@ OBJ := $(patsubst %.S,%.o,$(PROG))
 
 all:
 
-%.o: %.S
-	avr-gcc $< -mmcu=atmega2560 -Os -g -c -o $@ -nostartfiles
-
 %.out: %.S
 	avr-gcc $< -mmcu=atmega2560 -Os -g -o $@ -nostartfiles
 	
