@@ -22,3 +22,9 @@ run the following command:
 sudo apt-get install gcc-avr avr-libc avrdude libtool texinfo elfutils \
                      libglu1-mesa-dev freeglut3-dev gdb-avr
 ```
+
+## Contributing
+
+Any bugs, suggestions and improvements are always welcome.
+
+Maintainer: Juan Manuel Fresia <juanmanuelfresia@gmail.com>
