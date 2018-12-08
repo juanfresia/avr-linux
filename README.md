@@ -1,4 +1,4 @@
-# avr-Linux
+# avr-linux
 
 Base project and tool chain for avr assembly programming in Linux.
 
