@@ -23,6 +23,32 @@ sudo apt-get install gcc-avr avr-libc avrdude libtool texinfo elfutils \
                      libglu1-mesa-dev freeglut3-dev gdb-avr
 ```
 
+## Compiling
+
+The provided makefile has two targets to compile the source code. It expects the
+source files to have the extension .S. The makefile is able to generate two
+types of binaries: _ihex_ and _elf_ formats. The first one is used to upload the
+program to the MCU, the latter to use gdb and inspect capabilities.
+
+It is important to note that only one .S can be built at a time, meaning there
+is no linking of binaries. All dependencies can be managed using `#include`
+directives of `avr-gcc` compiler.
+
+To build a specific `source.S` file into an _ihex_ binary simply run:
+
+```bash
+make source.hex
+```
+
+To build the _elf_ version of the binary instead run:
+
+```bash
+make source.elf
+```
+
+Lastly, the default target `make all` will attempt to build all .S files
+individually.
+
 ## Contributing
 
 Any bugs, suggestions and improvements are always welcome.
