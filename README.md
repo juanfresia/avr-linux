@@ -27,4 +27,4 @@ sudo apt-get install gcc-avr avr-libc avrdude libtool texinfo elfutils \
 
 Any bugs, suggestions and improvements are always welcome.
 
-Maintainer: Juan Manuel Fresia <juanmanuelfresia@gmail.com>
+Maintainer: Juan Manuel Fresia (<juanmanuelfresia@gmail.com>)
