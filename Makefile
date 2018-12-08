@@ -3,6 +3,7 @@
 # All generated elf binaries match *.elf
 
 PROG := $(wildcard *.S)
+BIN := $(patsubst %.S,%,$(PROG))
 HEX := $(patsubst %.S,%.hex,$(PROG))
 OBJ := $(patsubst %.S,%.o,$(PROG))
 
@@ -29,29 +30,29 @@ endif
 # By default, build everything in the directory
 all: $(HEX)
 
-%.elf: %.S
+%.out: %.S
 	avr-gcc $< $(CFLAGS) -o $@
-	
-%.hex: %.elf
+
+%.hex: %.out
 	avr-objcopy -O ihex $< $@ 
 	
-%.elf: %.elf
+%.elf: %.out
 	avr-objcopy -O elf32-avr -g $< $@ 
 	
 upload-%: %.hex
 	avrdude $(UPLOAD_FLAGS) -U flash:w:$<
 
-inspect-%: %.elf
+inspect-%: %.out
 	avr-objdump -D $<
 
 sim-gdb-%: %.hex
 	simavr -m $(MCU) -f 16m $< --gdb
 
-gdb-%: %.elf
+gdb-%: %.out
 	avr-gdb -q -s $< -e $< -n -ex 'target remote 127.0.0.1:1234'
 
 clean:
-	rm -rf *.hex *.elf
+	rm -rf *.hex *.out *.elf
  
 .DEFAULT: all
 .PHONY: all clean upload
