@@ -1,15 +1,26 @@
+# Expected source files to match *.S
+# All generated ihex binaries match *.hex
+# All generated elf binaries match *.elf
+
 PROG := $(wildcard *.S)
 HEX := $(patsubst %.S,%.hex,$(PROG))
 OBJ := $(patsubst %.S,%.o,$(PROG))
 
+
+# Micro Controller Unit
 # Only tested with atmega2560 (Arduino Mega) and atmega328p (Arduino Uno)
-MMCU := atmega2560
+MCU := atmega2560
+
+# Flags for compiling
+CFLAGS := -mmcu=$(MCU) -Os -g -nostartfiles
 
 # Device where the board is connected (usually this would work just fine)
 DEVICE := /dev/ttyACM0
 
-UPLOAD_FLAGS := -P $(DEVICE) -m $(MMCU) -b 115200
-ifeq ($(MMCU), atmega2560)
+UPLOAD_FLAGS := -P $(DEVICE) -m $(MCU) -b 115200
+
+# If using a different MCU or board, these flags may change
+ifeq ($(MCU), atmega2560)
 	UPLOAD_FLAGS += -c wiring -F -D
 else
 	UPLOAD_FLAGS += -c arduino
@@ -18,30 +29,29 @@ endif
 # By default, build everything in the directory
 all: $(HEX)
 
-%.out: %.S
-	avr-gcc $< -mmcu=$(MMCU) -Os -g -o $@ -nostartfiles
+%.elf: %.S
+	avr-gcc $< $(CFLAGS) -o $@
 	
-%.hex: %.out
+%.hex: %.elf
 	avr-objcopy -O ihex $< $@ 
 	
-%.elf: %.out
+%.elf: %.elf
 	avr-objcopy -O elf32-avr -g $< $@ 
 	
 upload-%: %.hex
 	avrdude $(UPLOAD_FLAGS) -U flash:w:$<
 
-inspect-%: %.out
+inspect-%: %.elf
 	avr-objdump -D $<
 
 sim-gdb-%: %.hex
-	simavr -m $(MMCU) -f 16m $< --gdb
+	simavr -m $(MCU) -f 16m $< --gdb
 
-gdb-%: %.out
+gdb-%: %.elf
 	avr-gdb -q -s $< -e $< -n -ex 'target remote 127.0.0.1:1234'
 
 clean:
-	rm -rf *.o *.hex *.out
-.PHONY: clean
+	rm -rf *.hex *.elf
  
 .DEFAULT: all
-.PHONY: upload
+.PHONY: all clean upload
