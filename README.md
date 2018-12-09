@@ -100,6 +100,8 @@ make gdb-source
 
 This will prompt you with a gdb terminal ready to start debugging the program.
 
+More information on debugging with `avr-gdb` can be found in [here](/docs/avr-gdb.md).
+
 ## Contributing
 
 Any bugs, suggestions and improvements are always welcome so feel free to open an
