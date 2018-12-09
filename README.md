@@ -30,13 +30,13 @@ follows (unluckily, the project needs to be build from source as there are no
 binaries uploaded to the repositories):
 
 ```bash
-git clone https://github.com/buserror/simavr /tmp
+git clone https://github.com/buserror/simavr /tmp/simavr
 cd /tmp/simavr
-make install RELEASE=1
+sudo make install RELEASE=1
 ```
 
-This will create several `simavr` folders under `/usr/local/bin`,
-`/usr/local/includes` and `/usr/local/lib`.
+This will create several `simavr` folders under `/usr/local/bin` and
+`/usr/local/include`. Remove them to uninstall.
 
 ## Compiling
 
