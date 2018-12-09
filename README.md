@@ -70,9 +70,9 @@ issue or submitting a PR.
 Let us know if you tested our repos in any new MCU or base OS, and the problems
 you may have stumbled upon so we can keep this growing.
 
-Maintainer:
+Maintainers:
 
-- Juan Manuel Fresia (<juanmanuelfresia@gmail.com>)
+- Juan Manuel Fresia <<juanmanuelfresia@gmail.com>>
 
 Contributors:
 
