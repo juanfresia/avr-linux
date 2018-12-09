@@ -23,6 +23,21 @@ sudo apt-get install gcc-avr avr-libc avrdude libtool texinfo elfutils \
                      libglu1-mesa-dev freeglut3-dev gdb-avr libelf-dev
 ```
 
+If you want to also be able to debug your programs you will need an avr
+architecture simulator. The provided Makefile uses
+[`simavr`](https://github.com/buserror/simavr), and you can install it as
+follows (unluckily, the project needs to be build from source as there are no
+binaries uploaded to the repositories):
+
+```bash
+git clone https://github.com/buserror/simavr /tmp
+cd /tmp/simavr
+make install RELEASE=1
+```
+
+This will create several `simavr` folders under `/usr/local/bin`,
+`/usr/local/includes` and `/usr/local/lib`.
+
 ## Compiling
 
 The provided makefile has two targets to compile the source code. It expects the
