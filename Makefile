@@ -3,10 +3,8 @@
 # All generated elf binaries match *.elf
 
 PROG := $(wildcard *.S)
-BIN := $(patsubst %.S,%,$(PROG))
 HEX := $(patsubst %.S,%.hex,$(PROG))
 OBJ := $(patsubst %.S,%.o,$(PROG))
-
 
 # Micro Controller Unit
 # Only tested with atmega2560 (Arduino Mega) and atmega328p (Arduino Uno)
