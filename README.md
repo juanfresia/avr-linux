@@ -65,6 +65,9 @@ makefile if you need to change that, or if you need to change the programmer
 
 ## Contributing
 
-Any bugs, suggestions and improvements are always welcome.
+Any bugs, suggestions and improvements are always welcome so feel free to open an
+issue or submitting a PR.
+Let us know if you tested our repos in any new MCU or base OS, and the problems
+you may have stumbled upon so we can keep this growing.
 
 Maintainer: Juan Manuel Fresia (<juanmanuelfresia@gmail.com>)
