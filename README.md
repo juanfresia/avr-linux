@@ -63,6 +63,43 @@ which should be fine if the board is the only device connected. Check the
 makefile if you need to change that, or if you need to change the programmer
 (`avrdude` `-c` flag).
 
+## Debugging
+
+The makefile provides two features to debug and inspect the generated code: the
+equivalent to `objdump` to inspect the compiled code, and the equivalent to
+`gdb` for general purpose debugging.
+
+To get a dump of the generated binary (compiled from `source.S` file simply run:
+
+```bash
+make inspect-source
+```
+
+This will output a dump of the assembly code, with all the constants replaced,
+useful to check whether the registers and port constants were replaced
+correctly.
+This target will recompile the code if it was changed since last inspection.
+
+### gdb debugging
+
+The second feature is gdb debugging. This is achieved by running the code on a
+avr architecture emulator, `sim-avr`, and then attaching a gdb to that process.
+
+To use this feature first you will need to start the simulator with:
+
+```bash
+make sim-gdb-source
+```
+
+After that it will wait for a gdb session to be attached, which can be done with
+the following command **from another terminal**
+
+```bash
+make gdb-source
+```
+
+This will prompt you with a gdb terminal ready to start debugging the program.
+
 ## Contributing
 
 Any bugs, suggestions and improvements are always welcome so feel free to open an
