@@ -32,9 +32,29 @@ This has the following effect:
 - The other I/O registers will have an offset of 0x20, meaning they will
   evaluate to its memory address. Example, you can use `TCTN2` only with `st`.
 
+We also included in `avr-linux.h` two wrappers `LOW()` and `HIGH()` of the
+macros `lo8()` and `hi8()`, to allow the usage of the semantics of other
+compilers. These macros simply allow you to take the high or low byte from a 16
+bit number, useful for Flash addresses and loading them into `Z` register.
+
+Lastly, some other macros have been defined to allow correspondence with AVR
+Studio-like compiler directives (avrasm2). These are explained in the following section.
+
 ## The compiler directives
 
-WIP
+The directives of `avr-gcc` are slightly different from the ones provided by
+`avrasm2` (used by AVR Studio), however we can find an equivalence between both
+compilers, as described by the following table:
+
+| avr-gcc | avrasm2 | avr-linux.h | Description                           |
+| ------- | ------- | ----------- | ------------------------------------- | 
+| .text   | .cseg   | CSEG        | Indicates code segment (Flash memory) |
+| .data   | .dseg   | DSEG        | Indicates data segment (SRAM memory)  |
+| .byte   | .db     | DB          | Set up constant data in Flash memory  |
+| .space  | .byte   | BYTE        | Reserve space in SRAM memory          |
+
+The third column describes the macros defined in `avr-linux.h` if you want your
+code to better resemble AVR Studio like directives.
 
 ## Flash memory addressing and interrupt vector
 
