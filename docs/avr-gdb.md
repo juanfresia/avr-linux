@@ -7,7 +7,30 @@ such as __avr__.
 
 ## Running the debugger
 
-WIP
+In order to debug with this tool chain we first need to launch the avr
+simulator, which can be done as follows:
+
+```bash
+simavr -m atmega2560 -f 16m source.hex --gdb
+```
+
+This will start the simulation and pause it, listening for a remote gdb session
+on port 1234. The `-m` flag specifies the MCU to simulate, the `-f` the
+frequency of the clock (which is not really relevant for our purposes) and
+`source.hex` is the __ihex__ binary of the program to run. Notice that __elf__
+binaries are also supported.
+
+The simulation will halt at address 0x0, as if the reset interrupt handler would
+have been called.
+
+To start and attach a gdb session, we can run:
+
+```bash
+avr-gdb -q -s source.out -n -ex 'target remote 127.0.0.1:1234'
+```
+
+This will connect to the running simulator and take the symbols from
+`source.out` to allow us to use the labels when asking gdb for memory addresses.
 
 ## Accessing code and data memories
 
