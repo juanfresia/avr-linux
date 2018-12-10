@@ -19,7 +19,7 @@ To install all the dependencies needed to start using this base project, simply
 run the following command:
 
 ```bash
-sudo apt-get install gcc-avr avr-libc avrdude libtool texinfo elfutils \
+sudo apt-get install -y gcc-avr avr-libc avrdude libtool texinfo elfutils \
                      libglu1-mesa-dev freeglut3-dev gdb-avr libelf-dev
 ```
 
