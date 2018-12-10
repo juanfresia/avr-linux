@@ -47,7 +47,7 @@ sim-gdb-%: %.hex
 	simavr -m $(MCU) -f 16m $< --gdb
 
 gdb-%: %.out
-	avr-gdb -q -s $< -e $< -n -ex 'target remote 127.0.0.1:1234'
+	avr-gdb -q -s $< -n -ex 'target remote 127.0.0.1:1234'
 
 clean:
 	rm -rf *.hex *.out *.elf
