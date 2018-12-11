@@ -70,7 +70,7 @@ interrupt vector provided by the MCUs datasheets are in program address space,
 meaning they point to 16-bit words. As `avr-gcc` addresses memories as bytes,
 you will need to multiply that addresses by 2.
 
-As an example, assume you want to set up an ISR for timer 1 overflow in a
+As an example, assume you want to set up an ISR for timer 1 overflow in an
 atmega2560. The manual says `TIMER1 OVF` is interrupt number 21, and that its
 corresponding address is at `0x28` (40, in decimal). This means that its ISR
 will start at __byte__ `0x50` (80, in decimal), and it could be set up as
