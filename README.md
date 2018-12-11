@@ -84,7 +84,7 @@ The makefile provides two features to debug and inspect the generated code: the
 equivalent to `objdump` to inspect the compiled code, and the equivalent to
 `gdb` for general purpose debugging.
 
-To get a dump of the generated binary (compiled from `source.S` file simply run:
+To get a dump of the generated binary (compiled from `source.S` file) simply run:
 
 ```bash
 make inspect-source
@@ -107,7 +107,7 @@ make sim-gdb-source
 ```
 
 After that it will wait for a gdb session to be attached, which can be done with
-the following command **from another terminal**
+the following command **from another terminal**:
 
 ```bash
 make gdb-source
