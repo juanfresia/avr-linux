@@ -13,6 +13,15 @@ from your favourite Unix OS.  We use `avr-*` cross-compiler tool chain, spanning
 we include a `/docs` folder with tools and tips on how to run and use each of
 those.
 
+This repository provides:
+
+- A Makefile with targets for compiling, debugging and uploading avr assembly
+  code. (`/src`)
+- A header (.h) file with some helper macros for your code. (`/src`)
+- Some examples on how to code with `avr-gcc` conventions. (`/src`)
+- Documentation explaining how to use all the above. (`/docs`)
+- A Vagrantfile to set up a virtual machine with all the tools installed.
+
 ## Installation
 
 To install all the dependencies needed to start using this base project, simply
@@ -116,6 +125,20 @@ make gdb-source
 This will prompt you with a gdb terminal ready to start debugging the program.
 
 More information on debugging with `avr-gdb` can be found in [here](/docs/avr-gdb.md).
+
+## A note on compatibility
+
+This repo has been tested successfully with the following OSs:
+
+- Debian 9 (Stretch), x86_64
+- Ubuntu 16.04.5 LTS (Xenial), x86_64
+
+The MCU used successfully uploaded were
+
+- atmega2560 (Arduino Mega rev3)
+- atmega328p (Arduino Uno)
+
+Let us know if you manage to get it working in other environments!
 
 ## Contributing
 
