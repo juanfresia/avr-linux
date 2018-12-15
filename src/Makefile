@@ -16,7 +16,7 @@ CFLAGS := -mmcu=$(MCU) -Os -g -nostartfiles
 # Device where the board is connected (usually this would work just fine)
 DEVICE := /dev/ttyACM0
 
-UPLOAD_FLAGS := -P $(DEVICE) -m $(MCU) -b 115200
+UPLOAD_FLAGS := -P $(DEVICE) -p $(MCU) -b 115200
 
 # If using a different MCU or board, these flags may change
 ifeq ($(MCU), atmega2560)
